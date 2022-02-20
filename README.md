@@ -2,10 +2,11 @@
 
 # CAVEAT EMPTOR
 
-I am not a geneticist, but my sister is.  From time to time, I help her with data processing by writing small tools that reduce her drudgery work.
-I make no warranties about this work.  I am open sourcing it in case it is useful for others.
-I have only tested this on a Mac.
-I am not a UI person.  ;-)    
+1. I am not a geneticist, but my sister is.  From time to time, I help her with data processing by writing small tools that reduce her drudgery work.
+1. I make no warranties about this work.  I am open sourcing it in case it is useful for others.
+1. I have only tested this on a Mac.
+1. I am not a UI person.  ;-)
+1. It's highly doubtful I'll take pull requests on this    
 
 # Intro
 
