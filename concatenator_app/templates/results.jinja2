@@ -1,0 +1,18 @@
+{% extends 'base.jinja2' %}
+
+{% block header %}
+  <h1>{% block title %}Results{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {%  if results_file %}
+    <div>Succesfully merged the files {{ files }} and wrote results to {{ analysis_results_file }} and
+    {{ occupancy_results_file }}
+    </div>
+  {% endif %}
+    <div>
+      {% for file in results %}
+        <div class="file-list"><a href="{{ url_for("files.download_results", name=file) }}">{{ file }}</a></div>
+      {% endfor %}
+    </div>
+{% endblock %}

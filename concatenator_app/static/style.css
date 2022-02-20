@@ -1,0 +1,70 @@
+
+/* See https://css-tricks.com/snippets/css/complete-guide-grid/ for details on grid */
+#all-results {
+    display: grid;
+    grid-template-columns: 200px 90%;
+    grid-template-rows: 100px;
+    grid-column-gap: 15px;
+}
+
+.content{
+    padding-left: 5px;
+}
+
+.file-list{
+    padding-bottom: 10px;
+}
+
+.row{
+    padding-top: 10px;
+}
+
+.file-list > label{
+    padding-left: 10px;
+}
+
+.container{
+    padding-top: 20px
+}
+
+.submit{
+    padding-top: 20px;
+}
+
+input{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+label{
+    font-weight: bold;
+}
+/*
+Debug
+*/
+#debug{
+    grid-row-start: 3;
+    grid-column-start: 2;
+}
+
+#debug-response{
+    display: none;
+}
+
+/*
+Headers and footers
+
+*/
+#header-content {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,13 @@
+{% extends 'base.jinja2' %}
+
+{% block header %}
+  <h1>{% block title %}List Files{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div>
+    {% for file in files %}
+      <div class="file-list"><a href="{{ url_for("files.download_file", name=file) }}">{{ file }}</a></div>
+    {% endfor %}
+  </div>
+{% endblock %}

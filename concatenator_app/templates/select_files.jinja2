@@ -1,0 +1,57 @@
+{% extends 'base.jinja2' %}
+
+{% block header %}
+  <h1>{% block title %}Merge Files{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form action="{{ url_for("concatenate.process") }}" method="POST">
+    <div class="row align-items-start">
+      <div class="col">
+        <h2>Analysis Inputs</h2>
+      </div>
+      <div class="col">
+        <h2>Occupancy Inputs</h2>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        <div><label class="form-label" for="upstream_dilution_factor">Upstream Dilution Factor</label>: <input class="form-control" type="text" name="upstream_dilution_factor"></div>
+        <div><label class="form-label" for="ul_into_reaction">uL into Reaction</label>: <input class="form-control" type="text" name="ul_into_reaction"></div>
+        <div><label class="form-label" for="reaction_volume">Reaction Volume</label>: <input class="form-control" type="text" name="reaction_volume"></div>
+        <div><label class="form-label" for="number_partitions">Number of Partitions</label>: <input class="form-control" type="text" name="number_partitions"></div>
+        <div><label class="form-label" for="analysis_output_name">Results Ouptut Name (stored in the Results folder)</label>: <input class="form-control" type="text"
+                                                                                       name="analysis_output_name"
+                                                                                       value="analysis_results.csv">
+        </div>
+
+      </div>
+      <div class="col">
+        <div><label class="form-label" for="assay_map">Assay Mapping (e.g. key=value, one per line)</label>:
+          <div><textarea class="form-control" name="assay_map" rows="10"
+                         cols="20"></textarea>
+          </div>
+        </div>
+        <div><label class="form-label" for="occupancy_output_name">Results Ouptut Name (stored in the Results folder)</label>: <input type="text"
+                                                                                       name="occupancy_output_name"
+                                                                                       value="occupancy_results.csv">
+        </div>
+      </div>
+
+    </div>
+    <div class="row align-items-start">
+      <div class="col">
+        <h2>Select Files</h2>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col">{% for file in files %}
+        <div class="file-list"><input type="checkbox" name="file" value="{{ file }}"><label class="form-label" 
+            for="file">{{ file }}</label></div>
+      {% endfor %}
+      </div>
+    </div>
+    <div class="submit"><input type="submit"></div>
+  </form>
+{% endblock %}
