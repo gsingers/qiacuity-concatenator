@@ -42,6 +42,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    try:
+        os.makedirs(COMPLETED_FOLDER)
+    except OSError:
+        pass
+
     from . import concatenate
     from . import files
     app.register_blueprint(concatenate.bp)
