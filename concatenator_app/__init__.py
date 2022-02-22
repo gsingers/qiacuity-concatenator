@@ -6,8 +6,9 @@ from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from itertools import zip_longest
 
-UPLOAD_FOLDER = '/Users/grantingersoll/projects/qiagen/qiacuity-concatenator/data/uploads'
-RESULTS_FOLDER = '/Users/grantingersoll/projects/qiagen/qiacuity-concatenator/data/results'
+UPLOAD_FOLDER = './data/uploads'
+RESULTS_FOLDER = './data/results'
+COMPLETED_FOLDER = './data/completed'
 ALLOWED_EXTENSIONS = {'csv'}
 
 
@@ -20,8 +21,12 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-    app.config['RESULTS_FOLDER'] = RESULTS_FOLDER
+    upload = os.environ.get("UPLOAD_FOLDER", UPLOAD_FOLDER)
+    results = os.environ.get("RESULTS_FOLDER", RESULTS_FOLDER)
+    completed = os.environ.get("COMPLETED_FOLDER", COMPLETED_FOLDER)
+    app.config['UPLOAD_FOLDER'] = upload
+    app.config['RESULTS_FOLDER'] = results
+    app.config['COMPLETED_FOLDER'] = completed
     app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
     # ensure the instance folder exists
     try:
@@ -48,8 +53,10 @@ def create_app(test_config=None):
         files.sort()
         results = os.listdir(app.config["RESULTS_FOLDER"])
         results.sort()
-        print(files, results)
-        return render_template("index.jinja2", zipped_files=zip_longest(files, results, fillvalue=""))
+        #print(files, results)
+        completed_folders = os.listdir(app.config["COMPLETED_FOLDER"])
+        completed_folders.sort()
+        return render_template("index.jinja2", zipped_files=zip_longest(files, results, completed_folders, fillvalue=""))
 
     return app
 

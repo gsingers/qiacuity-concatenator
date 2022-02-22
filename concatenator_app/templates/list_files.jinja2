@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+  <div>File listing for {{ path }}</div>
   <div>
     {% for file in files %}
       <div class="file-list"><a href="{{ url_for("files.download_file", name=file) }}">{{ file }}</a></div>

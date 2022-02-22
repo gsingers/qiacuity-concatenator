@@ -47,7 +47,7 @@ def upload_file():
 def list_files():
     files = os.listdir(current_app.config["UPLOAD_FOLDER"])
     files.sort()
-    return render_template("list_files.jinja2", files=files)
+    return render_template("list_files.jinja2", files=files, path=current_app.config["UPLOAD_FOLDER"])
 
 
 @bp.route('/uploads/<name>')
@@ -64,3 +64,10 @@ def list_results():
     files = os.listdir(current_app.config["RESULTS_FOLDER"])
     files.sort()
     return render_template("results.jinja2", results=files)
+
+@bp.route('/completed/<name>')
+def list_completed(name):
+    path = "%s/%s" % (current_app.config["COMPLETED_FOLDER"], name)
+    files = os.listdir(path)
+    files.sort()
+    return render_template("list_files.jinja2", files=files, path=path)

@@ -44,7 +44,15 @@
         <h2>Select Files</h2>
       </div>
     </div>
-
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="btn-group" role="group">
+          <button id="select_all_btn" type="button" onclick="select_all('file'); set_button('deselect_all_btn', false); set_button('select_all_btn', true);">Select All</button>
+          <button id="deselect_all_btn" type="button" disabled onclick="deSelect_all('file'); set_button('deselect_all_btn', true); set_button('select_all_btn', false);">Deselect All</button>
+          <button id="invert_all_btn" type="button" onclick="invert_all('file'); set_button('deselect_all_btn', false); set_button('select_all_btn', false);">Invert</button>
+        </div>
+      </div>
+    </div>
     <div class="row align-items-center">
       <div class="col">{% for file in files %}
         <div class="file-list"><input type="checkbox" name="file" value="{{ file }}"><label class="form-label" 

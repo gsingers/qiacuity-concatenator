@@ -1,0 +1,12 @@
+{% extends 'base.jinja2' %}
+
+{% block header %}
+  <h1>{% block title %}Error{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div>Couldn't process the following request:</div>
+  <div>
+    {{ request }}
+  </div>
+{% endblock %}

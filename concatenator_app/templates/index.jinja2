@@ -15,13 +15,16 @@
       <div class="col">
         <h2>Result Files</h2>
       </div>
+      <div class="col">
+        <h2>Completed Folders</h2>
+      </div>
     </div>
     <div class="row-align-items-center">
       <div class="col">
         <a href="{{ url_for("files.upload_file") }}">Upload new file</a>
       </div>
     </div>
-    {% for input, result in zipped_files %}
+    {% for input, result, completed in zipped_files %}
       <div class="row align-items-center">
         <div class="col">
           <div class="file-list"><a href="{{ url_for("files.download_file", name=input) }}">{{ input }}</a></div>
@@ -29,9 +32,12 @@
         <div class="col">
           <div class="file-list"><a href="{{ url_for("files.download_results", name=result) }}">{{ result }}</a></div>
         </div>
+        <div class="col">
+          <div class="file-list"><a href="{{ url_for("files.list_completed", name=completed) }}">{{ completed }}</a></div>
+        </div>
 
       </div>
-      
+
     {% endfor %}
   </div>
 {% endblock %}
