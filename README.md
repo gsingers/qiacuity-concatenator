@@ -4,8 +4,9 @@
 
 1. I am not a geneticist, but my sister is.  From time to time, I help her with data processing by writing small tools that reduce her drudgery work.  This repo is one such example.
 1. *I make no claims or warranties about the accuracy of this work or the choice of formulas.  I am open sourcing it in case it is useful for others.*
-1. I have only tested this on a Mac with pyenv and Anaconda.
+1. I have only tested this on a Mac with pyenv and Anaconda and with files from my sister.
 1. I am not a UI person.  ;-)
+1. There is very little error handling and no unit tests.
 
 
 # Intro
