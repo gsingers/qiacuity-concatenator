@@ -67,18 +67,22 @@ Some way of managing your Python virtual environments
 
 ## From the Command Line 
 
-1. Clone this repository
+### One Time Setup
+1. Clone this repository and change to the directory:
+    1. `git clone git@github.com:gsingers/qiacuity-concatenator.git`
+    1. `cd qiacuity-concatenator` 
 1. `pip install -r requirements.txt`
-1. `export FLASK_APP=concatenator_app`
-1. OPTIONAL: If you want to change where data is stored (default is to store under the `data` directory in this folder)
-    1. `export UPLOAD_FOLDER=/path/to/your/uploads`
-    1. `export COMPLETED_FOLDER=/path/to/your/completed` 
-    1. `export RESULTS_FOLDER=/path/to/your/results`
-1. `flask run` or `flask run --port <PORT_NUMBER>` (pass in whatever port number you want.  If you don't know what that means, just do `flask run`.) 
+    1. If you are using a Python Virtual Environment, be sure to activate it first (I recommend pyenv, see above).  If you don't know what that is, don't worry about it, it should "just work". 
+
+### Running
+
+1. If you want to use the default data locations (in the `data` directory under the current directory): `./run.sh`
+1. If you have your data somewhere else, you can pass in the folder locations like: `./run.sh -u /path/to/upload/folder -c /path/to/completed/folder -r /path/to/results/folder`
+    1. For example: `./run.sh -u /tmp/data/uploads -r /tmp/data/results -c /tmp/data/completed`  
 
 ## In your browser
 
-1. `http://localhost:5000` or if you specificed a port number: `http://localhost:<PORT_NUMBER>` (e.g. `http://localhost:3000`)
+1. `http://localhost:5000`
 
 
 # Using
