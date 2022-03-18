@@ -71,7 +71,7 @@ Some way of managing your Python virtual environments
 1. `pip install -r requirements.txt`
 1. `export FLASK_APP=concatenator_app`
 1. OPTIONAL: If you want to change where data is stored (default is to store under the `data` directory in this folder)
-    1. `export UPLOADS_FOLDER=/path/to/your/uploads`
+    1. `export UPLOAD_FOLDER=/path/to/your/uploads`
     1. `export COMPLETED_FOLDER=/path/to/your/completed` 
     1. `export RESULTS_FOLDER=/path/to/your/results`
 1. `flask run` or `flask run --port <PORT_NUMBER>` (pass in whatever port number you want.  If you don't know what that means, just do `flask run`.) 
