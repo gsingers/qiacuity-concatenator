@@ -52,7 +52,7 @@ It is primarily designed to be run locally and interacted with via your browser.
 Some way of managing your Python virtual environments or otherwise installing Python dependencies:
 
 1. [Pyenv](https://github.com/pyenv/pyenv)
-1. [Pyenv-virtualenv](https://github.com/pyenv/pyenv)
+1. [Pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
   
 
 # Installing and Running
