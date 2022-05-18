@@ -49,9 +49,7 @@ It is primarily designed to be run locally and interacted with via your browser.
 1. Python 3.x (I've only tested on 3.9.7)
 1. Familiarity with using the command line.
 
-## Optional
-
-Some way of managing your Python virtual environments
+Some way of managing your Python virtual environments or otherwise installing Python dependencies:
 
 1. [Pyenv](https://github.com/pyenv/pyenv)
 1. [Pyenv-virtualenv](https://github.com/pyenv/pyenv)
