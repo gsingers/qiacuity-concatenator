@@ -74,6 +74,7 @@ Some way of managing your Python virtual environments or otherwise installing Py
 
 ### Running
 
+1. `pyenv virtualenv qiacuity`
 1. If you want to use the default data locations (in the `data` directory under the current directory): `./run.sh`
 1. If you have your data somewhere else, you can pass in the folder locations like: `./run.sh -u /path/to/upload/folder -c /path/to/completed/folder -r /path/to/results/folder`
     1. For example: `./run.sh -u /tmp/data/uploads -r /tmp/data/results -c /tmp/data/completed`  
