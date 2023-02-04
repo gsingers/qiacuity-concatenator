@@ -69,11 +69,13 @@ Some way of managing your Python virtual environments or otherwise installing Py
 1. Clone this repository and change to the directory:
     1. `git clone git@github.com:gsingers/qiacuity-concatenator.git`
     1. `cd qiacuity-concatenator` 
+1. `pyenv activate qiacuity`
 1. `pip install -r requirements.txt`
     1. If you are using a Python Virtual Environment, be sure to activate it first (I recommend pyenv, see above).  If you don't know what that is, don't worry about it, it should "just work". 
 
 ### Running
 
+1. `pyenv activate qiacuity`
 1. If you want to use the default data locations (in the `data` directory under the current directory): `./run.sh`
 1. If you have your data somewhere else, you can pass in the folder locations like: `./run.sh -u /path/to/upload/folder -c /path/to/completed/folder -r /path/to/results/folder`
     1. For example: `./run.sh -u /tmp/data/uploads -r /tmp/data/results -c /tmp/data/completed`  
