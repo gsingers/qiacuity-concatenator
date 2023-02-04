@@ -1,3 +1,5 @@
+import traceback
+
 from flask import (
     Blueprint, request, abort, current_app, jsonify, render_template, current_app
 )
@@ -43,27 +45,33 @@ def process_files(file_names, upstream_dilution_factor, ul_into_reaction, reacti
             print("Plate_id: %s" % plate_id)
             df = load_data_frame(current_app.config["UPLOAD_FOLDER"], file)
             if df is not None:
-                df["Plate ID"] = plate_id # both analysis and occupancy need plate_id
-                #print(df.keys())
-                # NOTE: hardcoding a column name as an indicator of file type
-                if "Reaction Mix" in df.keys():
-                    print("Processing Analysis file %s" % file)
-                    df = process_analysis_file(df, number_partitions, plate_id, reaction_volume, ul_into_reaction,
-                                          upstream_dilution_factor)
-                    analysis_frames.append(df)
-                elif "Categories" in df.keys():
-                    print("Processing Occupancy file: %s" % file)
+                try:
+                    df["Plate ID"] = plate_id # both analysis and occupancy need plate_id
+                    #print(df.keys())
+                    # NOTE: hardcoding a column name as an indicator of file type
+                    if "Reaction Mix" in df.keys():
+                        print("Processing Analysis file %s" % file)
+                        df = process_analysis_file(df, number_partitions, plate_id, reaction_volume, ul_into_reaction,
+                                              upstream_dilution_factor)
+                        analysis_frames.append(df)
+                    elif "Categories" in df.keys():
+                        print("Processing Occupancy file: %s" % file)
 
-                    analysis_name = get_analysis_name(plate_id)
-                    if analysis_name is not None:
-                        analysis_df = load_data_frame(current_app.config["UPLOAD_FOLDER"], analysis_name)
-                        analysis_df["Plate ID"] = plate_id
-                        analysis_df.rename(columns={"Unnamed: 0": "Well"}, inplace=True)
-                        df = process_occupancy_file(df, analysis_df, assay_map)
-                        occupancy_frames.append(df)
-                    else:
-                        print("Could not find matching analysis file for Plate ID: %s" % plate_id)
-                        return abort(400)
+                        analysis_name = get_analysis_name(plate_id)
+                        if analysis_name is not None:
+                            analysis_df = load_data_frame(current_app.config["UPLOAD_FOLDER"], analysis_name)
+                            analysis_df["Plate ID"] = plate_id
+                            analysis_df.rename(columns={"Unnamed: 0": "Well"}, inplace=True)
+                            df = process_occupancy_file(df, analysis_df, assay_map)
+                            occupancy_frames.append(df)
+                        else:
+                            print("Could not find matching analysis file for Plate ID: %s" % plate_id)
+                            return abort(400)
+                except TypeError as e:
+                    print(f"Could not process file {file} due to exception {e}")
+                    traceback.print_exception(type(e), e, e.__traceback__)
+
+                    return abort(400, file)
 
         else:
             print("Can't find plate id or otherwise don't know how to process file: %s" % file)
@@ -115,10 +123,12 @@ def process_occupancy_file(occupancy_df, analysis_df, assay_map):
 
 def process_analysis_file(df, number_partitions, plate_id, reaction_volume, ul_into_reaction, upstream_dilution_factor):
     # do some clean up
-
+    print(df.dtypes)
     df.rename(columns={"Unnamed: 0": "Well"}, inplace=True)
     # handle "-"
     df["CI (95%)"] = df["CI (95%)"].replace("-", np.nan)
+    df["Concentration (copies/µL)"] = df["Concentration (copies/µL)"].replace("n.a.", np.nan)
+    df["Concentration (copies/µL)"] = df["Concentration (copies/µL)"].astype(float)
     # strip %
     df["CI (95%)"] = df['CI (95%)'].str.rstrip('%').astype('float') / 100.0
 
